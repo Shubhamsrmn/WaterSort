@@ -15,14 +15,24 @@ const WaterColorContainer: React.FC<props> = ({
 }) => {
   const tranferSenderToReciever = () => {
     if (sender !== null && index !== sender) {
+      if (colorContainers[index].length === 4) return setSender(null);
       const senderTop = colorContainers[sender].slice(0)[0];
       const receiverTop = colorContainers[index].slice(0)[0];
-      if (colorContainers[index].length === 4) return setSender(null);
       if (receiverTop && senderTop !== receiverTop) return setSender(null);
+      let senderTopLen = 0;
+      const receiverTopLen = 4 - colorContainers[index].length;
+      while (senderTop === colorContainers[sender][senderTopLen])
+        senderTopLen++;
+      console.log(receiverTopLen, senderTopLen, index);
+
       if (!receiverTop || senderTop === receiverTop) {
         const newColorContainers = [...colorContainers];
-        const newReceiverTop = newColorContainers[sender].shift();
-        if (newReceiverTop) newColorContainers[index].push(newReceiverTop);
+        const limitOfTransfer =
+          receiverTopLen >= senderTopLen ? senderTopLen : receiverTopLen;
+        for (let idx = 0; idx < limitOfTransfer; idx++) {
+          const newReceiverTop = newColorContainers[sender].shift();
+          if (newReceiverTop) newColorContainers[index].unshift(newReceiverTop);
+        }
         setColorContainers(newColorContainers);
         setSender(null);
       }
