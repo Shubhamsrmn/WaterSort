@@ -1,7 +1,11 @@
 type props = {
   index: number;
   colorContainers: string[][];
-  setColorContainers: React.Dispatch<React.SetStateAction<string[][]>>;
+  tranfercolorsFunction: (
+    sender: number,
+    receiver: number,
+    tranferCnt: number
+  ) => void;
   sender: null | number;
   setSender: React.Dispatch<React.SetStateAction<null | number>>;
 };
@@ -9,7 +13,7 @@ type props = {
 const WaterColorContainer: React.FC<props> = ({
   index,
   colorContainers,
-  setColorContainers,
+  tranfercolorsFunction,
   sender,
   setSender,
 }) => {
@@ -23,17 +27,10 @@ const WaterColorContainer: React.FC<props> = ({
       const receiverTopLen = 4 - colorContainers[index].length;
       while (senderTop === colorContainers[sender][senderTopLen])
         senderTopLen++;
-      console.log(receiverTopLen, senderTopLen, index);
 
       if (!receiverTop || senderTop === receiverTop) {
-        const newColorContainers = [...colorContainers];
-        const limitOfTransfer =
-          receiverTopLen >= senderTopLen ? senderTopLen : receiverTopLen;
-        for (let idx = 0; idx < limitOfTransfer; idx++) {
-          const newReceiverTop = newColorContainers[sender].shift();
-          if (newReceiverTop) newColorContainers[index].unshift(newReceiverTop);
-        }
-        setColorContainers(newColorContainers);
+        const limitOfTransfer = Math.min(receiverTopLen, senderTopLen);
+        tranfercolorsFunction(sender, index, limitOfTransfer);
         setSender(null);
       }
     } else setSender(index);

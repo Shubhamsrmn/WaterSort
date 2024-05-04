@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import WaterColorContainer from "./components/WaterColorContainer";
 const AllColors = ["#CD1818", "#FF6500", "#F8E559", "#864AF9"];
 const getRandomNumber = (min: number, max: number) => {
@@ -34,21 +34,61 @@ const generateInitialColorsContainers = () => {
 };
 function App() {
   const [sender, setSender] = useState<number | null>(null);
-  const [colorContainers, setColorContainer] = useState<string[][]>(
+  const [colorContainers, setColorContainers] = useState<string[][]>(
     generateInitialColorsContainers
   );
+  const tranferHistoryArr = useRef<
+    { sender: number; receiver: number; tranferCnt: number }[]
+  >([]);
+  const tranfercolorsFunction = (
+    sender: number,
+    receiver: number,
+    tranferCnt: number,
+    storeHistory: boolean = true
+  ) => {
+    const newColorContainers = [...colorContainers];
+    for (let idx = 0; idx < tranferCnt; idx++) {
+      const newReceiverTop = newColorContainers[sender].shift();
+      if (newReceiverTop) newColorContainers[receiver].unshift(newReceiverTop);
+    }
+    if (storeHistory) {
+      tranferHistoryArr.current.push({
+        sender: sender,
+        receiver: receiver,
+        tranferCnt: tranferCnt,
+      });
+    }
+    setColorContainers(newColorContainers);
+  };
   return (
-    <div className="bg-[#35374B] h-screen flex items-center justify-center gap-24">
-      {colorContainers.map((_, idx) => (
-        <WaterColorContainer
-          key={idx}
-          index={idx}
-          colorContainers={colorContainers}
-          setColorContainers={setColorContainer}
-          sender={sender}
-          setSender={setSender}
-        />
-      ))}
+    <div className="bg-[#35374B] h-screen">
+      <div className="py-20 flex items-center justify-center gap-20">
+        {colorContainers.map((_, idx) => (
+          <WaterColorContainer
+            key={idx}
+            index={idx}
+            colorContainers={colorContainers}
+            tranfercolorsFunction={tranfercolorsFunction}
+            sender={sender}
+            setSender={setSender}
+          />
+        ))}
+      </div>
+      <button
+        className=" border p-4 text-white"
+        onClick={() => {
+          const lastTranfer = tranferHistoryArr.current.pop();
+          if (!lastTranfer) return;
+          tranfercolorsFunction(
+            lastTranfer.receiver,
+            lastTranfer.sender,
+            lastTranfer.tranferCnt,
+            false
+          );
+        }}
+      >
+        previos
+      </button>
     </div>
   );
 }
