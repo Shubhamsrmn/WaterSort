@@ -37,7 +37,7 @@ const WaterColorContainer: React.FC<props> = ({
   };
   return (
     <div
-      className={`border-2 border-white w-[8rem] h-[28rem] rounded-b-[20rem] flex flex-col justify-end transition-transform duration-500 ${
+      className={`border-2 border-white w-[7rem] h-[25rem] rounded-t-[2rem]  rounded-b-[20rem] flex flex-col justify-end transition-transform duration-500 max-lg:h-[20rem] max-lg:w-[6rem] max-md:h-[15rem] max-md:w-[5rem] max-sm:h-[12.5rem] max-sm:w-[4rem] ${
         sender === index ? "-translate-y-8" : ""
       }`}
       onClick={tranferSenderToReciever}
@@ -45,7 +45,7 @@ const WaterColorContainer: React.FC<props> = ({
       {colorContainers[index].map((color: string, idx: number) => (
         <div
           key={color + idx}
-          className={`h-[6rem] ${
+          className={`h-[5rem] max-lg:h-[4rem] max-md:h-[3rem] max-sm:h-[2.5rem] ${
             colorContainers[index].length - 1 === idx ? "rounded-b-[20rem]" : ""
           }`}
           style={{ backgroundColor: color }}
