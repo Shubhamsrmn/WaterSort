@@ -15,7 +15,7 @@ const PrimaryButton: React.FC<props> = ({
     <button
       className={`w-[3.2rem] h-[3.2rem] bg-[#FAF6F0] border rounded-full ${
         disabled && "cursor-not-allowed opacity-70"
-      } ${buttonStyle}`}
+      } max-md:w-[2.4rem] max-md:h-[2.4rem] ${buttonStyle} `}
       onClick={onClickHandler}
       disabled={disabled}
     >

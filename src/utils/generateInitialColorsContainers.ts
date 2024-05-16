@@ -1,12 +1,12 @@
 import { getRandomNumber } from "./getRandomNumber";
 
-const AllColors = ["#CD1818", "#FF6500", "#F8E559", "#864AF9"];
+const AllColors = ["#CD1818", "#FF6500", "#1A5D1A", "#2C4E80", "#FFF455"];
 export const generateInitialColorsContainers = (
   filledContainerCount: number,
   restoreFromStorages: boolean
 ) => {
   if (restoreFromStorages) {
-    const colorsContainersStr = localStorage.getItem("initialFinalContainers");
+    const colorsContainersStr = localStorage.getItem("lastFinalContainers");
     if (colorsContainersStr) return JSON.parse(colorsContainersStr);
   }
   const filledColorsContainers = [];
