@@ -13,7 +13,7 @@ const CompletedLevel: React.FC<props> = ({ tranferCount, newGameHandler }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       newGameHandler();
-    }, 10000);
+    }, 3000);
     return () => {
       clearTimeout(timeout);
     };
@@ -23,7 +23,7 @@ const CompletedLevel: React.FC<props> = ({ tranferCount, newGameHandler }) => {
   return (
     <div
       className={
-        "h-screen w-full fixed z-[1] text-[#FFC23C] font-semibold uppercase text-center italic flex flex-col items-center justify-around py-8"
+        "h-screen w-full fixed z-[1] text-[#FFC23C] font-semibold uppercase text-center italic flex flex-col items-center justify-around py-8 max-sm:justify-center max-sm:gap-8"
       }
       style={{
         background: "rgba(255,255,255,0.02)",

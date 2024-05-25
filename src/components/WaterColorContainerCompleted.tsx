@@ -35,25 +35,13 @@ const WaterColorContainerCompleted: React.FC<props> = ({ color }) => {
         >
           <FontAwesomeIcon icon={faStar} color={color} size="lg" />
         </motion.div>
-        <motion.div
-          initial={{ y: -20, scale: 1, opacity: 0 }}
-          animate={{
-            y: -70,
-            scale: 1.2,
-            opacity: 1,
-            transitionEnd: { opacity: 0 },
-          }}
-          transition={{ duration: 1.5, delay: 1 }}
-        >
-          <FontAwesomeIcon icon={faStar} color={color} size="lg" />
-        </motion.div>
       </div>
 
       <div className="w-[130%] absolute top-0 left-[50%] -translate-x-2/4">
         <img
           src={woodenBackground}
           alt="wooden bottle cap"
-          className="w-full h-6 bg-cover rounded-full"
+          className="w-full h-6 bg-cover rounded-full max-md:h-5 max-sm:h-4"
         />
       </div>
     </>
