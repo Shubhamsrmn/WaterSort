@@ -2,7 +2,7 @@ import { faStar as filled } from "@fortawesome/free-solid-svg-icons";
 import { faStar as unFilled } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
-
+import completedSvg from "../../public/Winners-pana.svg";
 type props = {
   tranferCount: number;
   newGameHandler: () => void;
@@ -23,34 +23,35 @@ const CompletedLevel: React.FC<props> = ({ tranferCount, newGameHandler }) => {
   return (
     <div
       className={
-        "h-screen w-full fixed z-[1] text-[#FFC23C] font-semibold uppercase text-center italic flex flex-col items-center justify-around py-12"
+        "h-screen w-full fixed z-[1] text-[#FFC23C] font-semibold uppercase text-center italic flex flex-col items-center justify-around py-8"
       }
       style={{
         background: "rgba(255,255,255,0.02)",
         backdropFilter: "blur(20px)",
       }}
     >
-      <p className="text-[5.2rem] max-md:text-[4rem] max-sm:text-[3.2rem]  completedLevelText">
-        Level completed
-      </p>
-      <div className="flex items-center justify-center gap-8 my-12">
+      <p className="text-[3.2rem] max-sm:text-[2.4rem]">Level completed</p>
+      <div className="w-80">
+        <img src={completedSvg} alt="" />
+      </div>
+      <div className="flex items-center justify-center gap-8 my-8 max-md:gap-6 max-sm:gap-4 max-sm:my-4">
         <FontAwesomeIcon
           icon={starLevel >= 1 ? filled : unFilled}
-          className="text-[10rem] max-md:text-[6rem] max-sm:text-[4rem]"
+          className="text-[5.2rem] max-md:text-[3.6rem] max-sm:text-[2.4rem]"
           color={color}
         />
         <FontAwesomeIcon
           icon={starLevel >= 2 ? filled : unFilled}
-          className="text-[10rem] max-md:text-[6rem] max-sm:text-[4rem]"
+          className="text-[5.2rem] max-md:text-[3.6rem] max-sm:text-[2.4rem]"
           color={color}
         />
         <FontAwesomeIcon
           icon={starLevel >= 3 ? filled : unFilled}
-          className="text-[10rem] max-md:text-[6rem] max-sm:text-[4rem]"
+          className="text-[5.2rem] max-md:text-[3.6rem] max-sm:text-[2.4rem]"
           color={color}
         />
       </div>
-      <p className="text-[4rem] font-serif underline max-md:text-[2.8rem] max-sm:text-[2rem]">
+      <p className="text-[2.4rem] font-serif underline max-md:text-[1.8rem]">
         Score
         <strong className="not-italic">
           {" : "}

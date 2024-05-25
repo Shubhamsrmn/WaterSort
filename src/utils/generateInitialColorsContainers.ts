@@ -4,11 +4,16 @@ const AllColors = ["#CD1818", "#FF6500", "#1A5D1A", "#2C4E80", "#FFF455"];
 export const generateInitialColorsContainers = (
   filledContainerCount: number,
   restoreFromStorages: boolean
-) => {
+): string[][] => {
   if (restoreFromStorages) {
-    const colorsContainersStr = localStorage.getItem("lastFinalContainers");
-    if (colorsContainersStr) return JSON.parse(colorsContainersStr);
+    const recentTranferContainers = localStorage.getItem(
+      "recentTranferContainers"
+    );
+    const newInitialContainers = localStorage.getItem("newInitialContainers");
+    if (recentTranferContainers) return JSON.parse(recentTranferContainers);
+    if (newInitialContainers) return JSON.parse(newInitialContainers);
   }
+  localStorage.clear();
   const filledColorsContainers = [];
   let maxColorsCount = Array.from({ length: filledContainerCount }, () => 4);
   for (let i = 0; i < filledContainerCount; i++) {
@@ -41,9 +46,6 @@ export const generateInitialColorsContainers = (
     ...unfilledColorsContainer,
   ];
 
-  localStorage.setItem(
-    "initialFinalContainers",
-    JSON.stringify(finalContainers)
-  );
+  localStorage.setItem("newInitialContainers", JSON.stringify(finalContainers));
   return finalContainers;
 };
