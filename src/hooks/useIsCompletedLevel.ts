@@ -10,7 +10,7 @@ const useIsCompletedLevel = (
     if (isCompleted) {
       const timeout = setTimeout(() => {
         setShowCompletedLevel(true);
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timeout);
     }
   }, [colorContainers, setShowCompletedLevel]);

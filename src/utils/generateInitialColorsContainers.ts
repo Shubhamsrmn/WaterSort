@@ -1,6 +1,13 @@
 import { getRandomNumber } from "./getRandomNumber";
 
-const AllColors = ["#CD1818", "#FF6500", "#1A5D1A", "#2C4E80", "#FFF455"];
+const AllColors = [
+  "#E74C3C", // Soft Red
+  "#5DADE2", // Sky Blue
+  "#58D68D", // Light Green
+  "#F7DC6F", // Soft Yellow
+  "#AF7AC5", // Lavender
+  "#F39C12", // Soft Orange
+];
 export const generateInitialColorsContainers = (
   filledContainerCount: number,
   restoreFromStorages: boolean

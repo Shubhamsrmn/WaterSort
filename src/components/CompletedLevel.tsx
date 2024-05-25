@@ -13,7 +13,7 @@ const CompletedLevel: React.FC<props> = ({ tranferCount, newGameHandler }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       newGameHandler();
-    }, 3000);
+    }, 8000);
     return () => {
       clearTimeout(timeout);
     };
